@@ -237,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad95c26306537c49952988370e9eb89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloseChestSprite: {fileID: 21300000, guid: d899d3c6363aca743a3edfe6a3df8082, type: 3}
   dashSpeed: 10
   timeDash: 0
   speed: 5
@@ -270,7 +269,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1111218178402532691
 MonoBehaviour:
   m_ObjectHideFlags: 0

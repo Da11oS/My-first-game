@@ -55,7 +55,8 @@ public class platphorm : MonoBehaviour
         if (collision.gameObject.tag == "Hero")
         {
             Hero.gameObject.transform.parent = gameObject.transform;
-           
+            Debug.Log("Сработал триггер на платформу!");
+
         }
 
     }
