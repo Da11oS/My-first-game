@@ -9,7 +9,7 @@ public class Hero : MonoBehaviour
 {
     private Rigidbody2D Rebe;
     private Animator ani;
-
+    public Text txt;
     public float dashSpeed=10f,timeDash,speed = 5f,butjump=10f;
     public float lspeed = 5;
     public  int coin = 0, life = 5,p1;
@@ -20,16 +20,15 @@ public class Hero : MonoBehaviour
     private float scaleX,scaleY;
     static public Vector2 lastpoint;
     public bool check=false;
-    private GameObject pauseMenu, textcoin;
-    Text txt;
+    private GameObject  textcoin;
+    public bool Dead;
     public Slider slider;
     private float startSpeed;
+    public GameObject PS;
+    private GameObject AudioPlayer;
     void Start()
     {
-        //lastpoint = transform.position;
-        pauseMenu = GameObject.Find("PauseMenu");
         textcoin = GameObject.Find("TextCoin");
-
         txt = textcoin.GetComponent<Text>();
         txt.text = "x" + coin.ToString();
         Rebe = GetComponent<Rigidbody2D>();
@@ -37,12 +36,17 @@ public class Hero : MonoBehaviour
         startSpeed = speed;
         scaleX = transform.localScale.x;
         scaleY = transform.localScale.y;
+        Dead = false;
+        AudioPlayer = GameObject.Find("AudioPlayer");
+        AudioPlayer.GetComponent<AudioSource>().volume = 1;
+        //  PS.SetActive(false);
+
     }
 
-    int j_out = 0;
+   
     void FixedUpdate()
     {
-        diff = pos - Rebe.transform.position.y;// eсли подним -
+        diff = pos - Rebe.transform.position.y;
         run();
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -57,6 +61,17 @@ public class Hero : MonoBehaviour
         if (lspeed > life)
             lspeed -= 0.015f;
         transform.localScale = new Vector3(scaleX, scaleY, 0);
+        if (life <= 0)
+        {
+            speed = 0;
+            GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<SpriteRenderer>().enabled = false;
+           // PS.SetActive(true);
+            PS.GetComponent<ParticleSystem>().Play(true);
+            
+            Time.timeScale = 0.5f;
+            Invoke("TrPos", 1.5f);
+        }
     }
     void speedReturn()
     {
@@ -74,16 +89,9 @@ public class Hero : MonoBehaviour
             Rebe.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
     }
-    void dead()
-    {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0;
-    }
-
     private void OnCollisionEnter2D(Collision2D shit)
     {
-        if (j_out == 1)
-            j_out--;
+        
         if (Input.GetKeyDown(KeyCode.S))
         {
             CapsuleCollider2D coll;
@@ -93,6 +101,18 @@ public class Hero : MonoBehaviour
         if (shit.gameObject.tag == "Batut")
             Rebe.AddForce(transform.up * butjump, ForceMode2D.Impulse);
       
+
+    }
+    public void TrPos()
+    {
+        GetComponent<Hero>().Dead = true;
+        GetComponent<PlayerPos>().pauseMenu.SetActive(true);
+        Destroy(gameObject);
+    }
+    public void OnDestroy()
+    {
+       // PS.transform.parent = null;
+       
     }
     private void OnCollisionStay2D(Collision2D shit)
     {
@@ -105,37 +125,18 @@ public class Hero : MonoBehaviour
                 coll.isTrigger = true;
             }
         }
-    }
-
-
-    private void OnTriggerStay2D(Collider2D shit)
-    {
-        if (shit.gameObject.tag == "Door")
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                life = 5;
-               SceneManager.LoadScene("2thScene");
-            }
-
-        }
-    }
+    }   
     void anim()
     {
-        if (Input.GetAxis("Horizontal") == 0)
+        if (Input.GetAxis("Horizontal") == 0 && GetComponent<JumpHero>().resolt)
             ani.SetInteger("NumberAni", 0);
         else
         {
-
+            
             flip();
+            if (GetComponent<JumpHero>().resolt)
             ani.SetInteger("NumberAni", 2);
-
         }
-        if (diff < 0 && j_out > 0) ani.SetInteger("NumberAni", 1);
-        else if (diff > 0 && j_out > 0) ani.SetInteger("NumberAni", 3);
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetAxis("Horizontal") != 0 && j_out == 0) ani.SetInteger("NumberAni", 1);
-
-
     }
     private void OnTriggerExit2D(Collider2D shit)
     {
@@ -151,27 +152,31 @@ public class Hero : MonoBehaviour
     {
         if (shit.gameObject.tag == "Money")
         {
+            AudioPlayer.GetComponent<AudioSource>().PlayOneShot(AudioPlayer.GetComponent<AudioPlay>().Money);
             coin++;
             Destroy(shit.gameObject);
             txt.text = "x" + coin.ToString();
 
         }
 
-        if (shit.gameObject.tag == "Blade" && !invul)
+        if (shit.gameObject.tag == "Blade" || shit.gameObject.tag == "BossSideSpike" )
         {
-            wait = 1.5f;
-            invul = true;
-            life--;
-
+            AudioPlayer.GetComponent<AudioSource>().PlayOneShot(AudioPlayer.GetComponent<AudioPlay>().Damage);
+            if (!invul)
+            {
+                wait = 2;
+                invul = true;
+                life--;
+                j = 0;
+            }
         }
-
-         if (shit.gameObject.tag == "Checkpoint")
-         {
-            PlayerPos.gm.lastCheckpointPos = shit.gameObject.transform.position;
-            check = true;
-
-         }
-       
+        if (shit.gameObject.tag == "Water")
+        {
+            AudioPlayer.GetComponent<AudioSource>().PlayOneShot(AudioPlayer.GetComponent<AudioPlay>().Water);
+            life = 0;
+           // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            slider.value = life;
+        }
     }
 
     void Envole()
@@ -180,21 +185,16 @@ public class Hero : MonoBehaviour
         {
             wait -= Time.deltaTime;
             j++;
+            if(j%2==0)
             Rebe.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 255);
+            else Rebe.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
         }
-        else if (wait <= 0.9f)
+        else if (wait <= 0.01f)
         {
             invul = false;
             Rebe.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
 
         }
-    }
-
-    void GTCheckpoint()
-    {
-        Time.timeScale = 1;
-        pauseMenu.SetActive(false);
-
     }
 }
 

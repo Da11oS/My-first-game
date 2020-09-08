@@ -10,11 +10,13 @@ public class Money : MonoBehaviour
     public GameObject hero;
     public GameObject textcoin;
     public GameObject chest;
+    private AudioSource mAudio;
      Text txt;
     // Start is called before the first frame update
     void Start()
     {
         txt = textcoin.GetComponent<Text>();
+        mAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,11 +28,11 @@ public class Money : MonoBehaviour
             txt.text = coin.ToString();
             Destroy(this);
         }
-        if (Vector2.Distance(hero.transform.position, chest.transform.position) < 0.3f)
-        {
-            coin=coin+10;
-            txt.text = coin.ToString();        
-        }
+        //if (Vector2.Distance(hero.transform.position, chest.transform.position) < 0.3f)
+        //{
+        //    coin=coin+10;
+        //    txt.text = coin.ToString();        
+        //}
     }
    
 }

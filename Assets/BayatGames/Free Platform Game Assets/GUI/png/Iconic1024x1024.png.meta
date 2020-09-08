@@ -10,6 +10,7 @@ TextureImporter:
     21300010: Iconic1024x1024_5
     21300012: Iconic1024x1024_6
     21300014: Iconic1024x1024_7
+    21300016: Iconic1024x1024_8
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -240,13 +241,33 @@ TextureImporter:
         width: 71
         height: 68
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 49eb2ddf18ce82a479a483d209325569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Iconic1024x1024_8
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 773
+        width: 70
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c5e947b909d0e4ba4085a87a6bf669
       vertices: []
       indices: 
       edges: []

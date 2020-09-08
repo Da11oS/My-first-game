@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7968811613598102663}
   m_Layer: 0
   m_Name: Boss_Spike_Down
-  m_TagString: Untagged
+  m_TagString: Blade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8444113481972608944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.06, y: 4.31, z: 0}
-  m_LocalScale: {x: 1.2183, y: 1.2183, z: 1.2183}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -106,12 +106,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.64, y: 0.645}
+    - - {x: -0.6261983, y: 0.570817}
+      - {x: -0.66008425, y: 0.5761385}
+      - {x: -0.6342616, y: 0.5933542}
+      - {x: -0.63713074, y: 0.57326937}
       - {x: -0.64, y: 0.585}
       - {x: -0.03, y: -0.645}
       - {x: 0.04, y: -0.645}
-      - {x: 0.64, y: 0.585}
-      - {x: 0.64, y: 0.645}
+      - {x: 0.6081066, y: 0.5580125}
+      - {x: 0.582242, y: 0.5602126}
 --- !u!50 &7968811613598102663
 Rigidbody2D:
   serializedVersion: 4

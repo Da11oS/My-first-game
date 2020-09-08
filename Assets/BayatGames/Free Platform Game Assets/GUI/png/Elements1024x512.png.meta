@@ -5,6 +5,7 @@ TextureImporter:
     21300000: Elements1024x512_0
     21300002: Elements1024x512_1
     21300004: Elements1024x512_2
+    21300006: Elements1024x512_3
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -135,13 +136,33 @@ TextureImporter:
         width: 240
         height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 9a4fc370513563f4f815a602bf4a92e9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elements1024x512_3
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 45
+        width: 273
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08bd4f4a83bebe340aaa6c42c72bae8e
       vertices: []
       indices: 
       edges: []

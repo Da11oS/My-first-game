@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class Chest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    
     private Animator cani;
    // public Transform hero;
-    public GameObject hero;
-    public Text txt;
+    private GameObject hero;
+   
     public bool ch = false;
     BoxCollider2D clChest;
     int pos=0;
     public Sprite CloseChestSprite;
+    private GameObject AudioPlayer;
     void Start()
     {
-  
+        hero = GameObject.Find("Body");
+        AudioPlayer = GameObject.Find("AudioPlayer");
     }
 
     void Update()
@@ -58,25 +58,19 @@ public class Chest : MonoBehaviour
         //}
         if (shit.gameObject.tag == "Hero")
         {
-            //coin += 10;
-            //txt.text = "x" + coin.ToString();
-            //pos = 1;
+            AudioPlayer.GetComponent<AudioSource>().PlayOneShot(AudioPlayer.GetComponent<AudioPlay>().Chest);
+            shit.GetComponent<Hero>().coin += 10;
+            shit.GetComponent<Hero>().txt.text = "x" + shit.GetComponent<Hero>().coin.ToString();
+            pos = 1;
             gameObject.GetComponent<Animator>().SetInteger("ChestA", 2);
             Debug.Log("ChestReaction!");
-           
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
-
         }
     }
     int t = 0;
 void ChangeAnimation()
     {
-        // gameObject.GetComponent<SpriteRenderer>().sprite = CloseChestSprite;
-       // t++;
-       //if(t>0)
             gameObject.GetComponent<Animator>().enabled=false ;
-        //  gameObject.GetComponent<Animator>().SetInteger("ChestA", 4);
-  //      Debug.Log(t);
     }
 
 }

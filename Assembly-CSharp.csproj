@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Fonts\Script\scriptTexttest.cs" />
+    <Compile Include="Assets\Scriptes\AudioPlay.cs" />
     <Compile Include="Assets\Scriptes\Blade.cs" />
     <Compile Include="Assets\Scriptes\Boss.cs" />
     <Compile Include="Assets\Scriptes\BossSpikeLeft.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Assets\Scriptes\Bounce.cs" />
     <Compile Include="Assets\Scriptes\Bullet.cs" />
     <Compile Include="Assets\Scriptes\ButtonScripte.cs" />
+    <Compile Include="Assets\Scriptes\ButtonSize.cs" />
     <Compile Include="Assets\Scriptes\Cameramin.cs" />
     <Compile Include="Assets\Scriptes\CameraMove.cs" />
     <Compile Include="Assets\Scriptes\Checkpoints.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Assets\Scriptes\Mace.cs" />
     <Compile Include="Assets\Scriptes\MAinmenu.cs" />
     <Compile Include="Assets\Scriptes\Money.cs" />
+    <Compile Include="Assets\Scriptes\NextScene.cs" />
     <Compile Include="Assets\Scriptes\Particle.cs" />
     <Compile Include="Assets\Scriptes\Pause.cs" />
     <Compile Include="Assets\Scriptes\Plat_Down.cs" />
@@ -91,7 +94,9 @@
     <Compile Include="Assets\Scriptes\PlayerPos.cs" />
     <Compile Include="Assets\Scriptes\ScrolingAmera.cs" />
     <Compile Include="Assets\Scriptes\Spike.cs" />
+    <Compile Include="Assets\Scriptes\TimeToStartBoss.cs" />
     <Compile Include="Assets\Scriptes\Trunk.cs" />
+    <Compile Include="Assets\Zero Rare\Retro Sound Effects\Demo\Demo.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Fonts\Documentation\JazzCreateBubble_VersionHistory_1.1.txt" />

@@ -5,23 +5,23 @@ using UnityEngine;
 public class Checkpoints : MonoBehaviour
 {
     private GameMaster gm;
-    
     private BoxCollider2D box;
     public bool hero=false;
+    public GameObject salut;
+    private ParticleSystem salutPS;
     private void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-      //  box = GetComponent<BoxCollider2D>();
+        salutPS = salut.GetComponent<ParticleSystem>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Hero"))//(collision.gameObject.tag=="Hero")//(collision.CompareTag("Hero"))
+        if (other.CompareTag("Hero"))
         {
-            //box.enabled = true;
+            
             gm.lastCheckpointPos = transform.position;
             hero = true;
-           // box.enabled = false;
-            
+            salutPS.Play(true);
         }
     }
 }

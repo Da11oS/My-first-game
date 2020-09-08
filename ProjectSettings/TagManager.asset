@@ -23,6 +23,8 @@ TagManager:
   - BossSideSpike
   - Foot
   - chest
+  - PauseMenu
+  - Boss
   layers:
   - Default
   - TransparentFX

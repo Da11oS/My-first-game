@@ -18,7 +18,7 @@ public class platphorm : MonoBehaviour
     {
         coll = GetComponent<CapsuleCollider2D>();
         Spots = m_spots.Length;
-        Hero = GameObject.Find("Body");
+        Hero = GameObject.FindGameObjectWithTag("Hero");
     }
     private void move()
     {
@@ -54,8 +54,11 @@ public class platphorm : MonoBehaviour
     {
         if (collision.gameObject.tag == "Hero")
         {
-            Hero.gameObject.transform.parent = gameObject.transform;
-            Debug.Log("Сработал триггер на платформу!");
+            if (Hero.gameObject.transform.parent == null)
+                Hero.gameObject.transform.parent = gameObject.transform;
+          
+            if (Hero.gameObject.transform.parent!=null)
+                Debug.Log("Стал дочерним!");
 
         }
 
@@ -64,7 +67,8 @@ public class platphorm : MonoBehaviour
     {
         if (collision.gameObject.tag == "Hero")
         {
-            Hero.gameObject.transform.parent = null;
+            if (Hero.gameObject.transform.parent != null)
+                Hero.gameObject.transform.parent = null;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
